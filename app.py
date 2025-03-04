@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=21, minute=0, second=0, microsecond=0)  
-    end_time = now.replace(hour=21, minute=5, second=0, microsecond=0)  
+    start_time = now.replace(hour=19, minute=0, second=0, microsecond=0)  
+    end_time = now.replace(hour=19, minute=5, second=0, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
@@ -115,7 +115,7 @@ if 'uid' in st.session_state:
     today_str = str(datetime.date.today())
 
     if can_show_riddle():
-        st.info("الوقت مفتوح الآن للإجابة: من ٩:٠٠ إلى ٩:٠٥ مساءً.")
+        st.info("الوقت مفتوح الآن للإجابة: من ٧:٠٠ إلى ٧:٠٥ مساءً.")
 
         if answered_date == today_str:
             st.warning("لقد أجبت اليوم بالفعل! عد غدًا لفزورة جديدة.")
@@ -159,7 +159,7 @@ if 'uid' in st.session_state:
                     })
 
     else:
-        st.warning("عذرًا! لا يمكنك الإجابة الآن. سيمكنك الاجابة من ٩:٠٠ إلى ٩:٠٥ مساءً.")
+        st.warning("عذرًا! لا يمكنك الإجابة الآن. سيمكنك الاجابة من ٧:٠٠ إلى ٧:٠٥ مساءً.")
 
     ##############################
     #        LEADERBOARD         #
