@@ -53,7 +53,7 @@ RIDDLES = [
 ##############################
 #      USER AUTH SECTION     #
 ##############################
-st.title("🌙 فوازير##### رمضان")
+st.title("🌙 فوازير رمضان")
 
 email = st.text_input("📧 أدخل البريد الإلكتروني:")
 password = st.text_input("🔑 أدخل كلمة المرور:", type="password")
