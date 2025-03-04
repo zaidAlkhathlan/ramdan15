@@ -126,15 +126,18 @@ if 'uid' in st.session_state:
 
             if st.button("تحقق من الإجابة"):
                 is_correct = (chosen == riddle["answer"])
+                
                 if is_correct:
-                    st.success("إجابة صحيحة!")
+                    st.success("✅ إجابة صحيحة!")
 
+                    # Count previous correct answers today
                     correct_query = db.collection("users")\
                         .where("answered_date", "==", today_str)\
                         .where("answered_correctly_today", "==", True)
                     correct_docs = correct_query.get()
                     correct_count = len(correct_docs)
 
+                    # Assign points based on the rank
                     if correct_count == 0:
                         add_points = 15
                     elif correct_count == 1:
@@ -142,22 +145,21 @@ if 'uid' in st.session_state:
                     elif correct_count == 2:
                         add_points = 5
                     else:
-                        add_points = 0  
+                        add_points = 3  # All other correct answers get 3 points
 
-                    new_points = current_points + add_points
-                    user_ref.update({
-                        "points": new_points,
-                        "answered_date": today_str,
-                        "answered_correctly_today": True
-                    })
-                    st.success(f"حصلت على {add_points} نقطة إضافية!")
                 else:
-                    st.error("إجابة خاطئة! حاول مرة أخرى غدًا.")
-                    user_ref.update({
-                        "answered_date": today_str,
-                        "answered_correctly_today": False
-                    })
+                    st.error("❌ إجابة خاطئة! ولكنك حصلت على نقطة واحدة.")
+                    add_points = 1  # Wrong answer gets 1 point
 
+                # Update points
+                new_points = current_points + add_points
+                user_ref.update({
+                    "points": new_points,
+                    "answered_date": today_str,
+                    "answered_correctly_today": is_correct
+                })
+                st.success(f"🎉 حصلت على {add_points} نقطة إضافية!")
+    
     else:
         st.warning("عذرًا! لا يمكنك الإجابة الآن. سيمكنك الاجابة من ٧:٠٠ إلى ٧:٠٥ مساءً.")
 
@@ -188,4 +190,4 @@ if 'uid' in st.session_state:
     if user_position:
         st.write(f"ترتيبك الحالي في لوحة الصدارة هو: #{user_position}")
     else:
-        st.write("أنت خارج أفضل 10.")
+        st.write("أنت خارج أفضل 10.") 
