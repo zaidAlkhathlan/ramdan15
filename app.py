@@ -166,7 +166,7 @@ if 'uid' in st.session_state:
     ##############################
     #        LEADERBOARD         #
     ##############################
-    st.header("🏆 لوحة الصدارة")
+    st.header("🏆 لوحة الصدارة#########")
 
     lb_query = db.collection("users").order_by("points", direction=firestore.Query.DESCENDING).limit(10)
     lb_docs = lb_query.get()
