@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=19, minute=0, second=0, microsecond=0)  
-    end_time = now.replace(hour=19, minute=5, second=0, microsecond=0)  
+    start_time = now.replace(hour=19, minute=20, second=0, microsecond=0)  
+    end_time = now.replace(hour=19, minute=25, second=0, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
@@ -44,11 +44,14 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 ##############################
-#       SAMPLE RIDDLES       #
+#       MANUAL RIDDLE        #
 ##############################
-RIDDLES = [
-    {"question": " في أي جهة يقع باب الكعبة المشرفة؟", "options": ["في الجهة الغربية من الكعبة", " في الجهة الجنوبية من الكعبة", " في الجهة الشمالية من الكعبة", "في الجهة الشرقية من الكعبة"], "answer": "في الجهة الشرقية من الكعبة"},
-]
+# 🎯 Every day, update this section with a new riddle before uploading
+RIDDLE = {
+    "question": "ما هو الشيء الذي كلما زاد نقص؟",
+    "options": ["العمر", "الماء", "الظل", "الوقت"],
+    "answer": "العمر"
+}
 
 ##############################
 #      USER AUTH SECTION     #
@@ -109,9 +112,6 @@ if 'uid' in st.session_state:
             "answered_correctly_today": False
         })
 
-    idx = datetime.date.today().day % len(RIDDLES)
-    riddle = RIDDLES[idx]
-
     today_str = str(datetime.date.today())
 
     if can_show_riddle():
@@ -121,11 +121,11 @@ if 'uid' in st.session_state:
             st.warning("لقد أجبت اليوم بالفعل! عد غدًا لفزورة جديدة.")
         else:
             st.write("### فزورة اليوم:")
-            st.write(riddle["question"])
-            chosen = st.radio("اختر الإجابة:", riddle["options"], index=0)
+            st.write(RIDDLE["question"])
+            chosen = st.radio("اختر الإجابة:", RIDDLE["options"], index=0)
 
             if st.button("تحقق من الإجابة"):
-                is_correct = (chosen == riddle["answer"])
+                is_correct = (chosen == RIDDLE["answer"])
                 
                 if is_correct:
                     st.success("✅ إجابة صحيحة!")
@@ -161,12 +161,12 @@ if 'uid' in st.session_state:
                 st.success(f"🎉 حصلت على {add_points} نقطة إضافية!")
     
     else:
-        st.warning("عذرًا! لا يمكنك الإجابة الآن. سيمكنك الاجابة من ٧:٠٠ إلى ٧:٠٥ مساءً.")
+        st.warning("عذرًا! لا يمكنك الإجابة الآن. سيمكنك الإجابة من ٧:٠٠ إلى ٧:٠٥ مساءً.")
 
     ##############################
     #        LEADERBOARD         #
     ##############################
-    st.header("🏆 لوحة الصدارة#########")
+    st.header("🏆 لوحة الصدارة")
 
     lb_query = db.collection("users").order_by("points", direction=firestore.Query.DESCENDING).limit(10)
     lb_docs = lb_query.get()
