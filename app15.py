@@ -48,7 +48,7 @@ db = firestore.client()
 ##############################
 # 🎯 Every day, update this section with a new riddle before uploading
 RIDDLE = {
-    "question": "ما هو الشيء الذي كلما زاد نقص؟",
+    "question": "ما هو     نقص؟",
     "options": ["العمر", "الماء", "الظل", "الوقت"],
     "answer": "العمر"
 }
