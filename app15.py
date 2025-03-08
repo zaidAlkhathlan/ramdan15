@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=19, minute=15, second=0, microsecond=0)  
-    end_time = now.replace(hour=19, minute=20, second=0, microsecond=0)  
+    start_time = now.replace(hour=18, minute=5, second=0, microsecond=0)  
+    end_time = now.replace(hour=18, minute=10, second=0, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
@@ -48,9 +48,9 @@ db = firestore.client()
 ##############################
 # 🎯 Every day, update this section with a new riddle before uploading
 RIDDLE = {
-    "question": "ما هو أكبر حيوان عاش على الأرض مطلقًا؟",
-    "options": ["الحوت الأزرق", "الفيل الأفريقي", "الأباتوصور", "السبينوصور"],
-    "answer": "الحوت الأزرق"
+    "question": "من هو مؤسس علم الوراثة الحديث؟ ",
+    "options": ["فرانسيسكو ريدي", "جريجور مندل", "تشارلز داروين", "آلان تورنج"],
+    "answer": "جريجور مندل"
 }
 
 ##############################
