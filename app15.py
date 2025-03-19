@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=19, minute=0, second=0, microsecond=0)  
-    end_time = now.replace(hour=19, minute=5, second=0, microsecond=0)  
+    start_time = now.replace(hour=17, minute=38, second=0, microsecond=0)  
+    end_time = now.replace(hour=17, minute=45, second=0, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
@@ -48,9 +48,10 @@ db = firestore.client()
 ##############################
 # 🎯 Every day, update this section with a new riddle before uploading
 RIDDLE = {
-    "question": "ما هي أطول مدة خلافة من بين الخلفاء الراشدين؟",
-     "options": ["أبو بكر الصديق", "عمر بن الخطاب", "عثمان بن عفان", "علي بن أبي طالب"],
-     "answer": "عثمان بن عفان"
+
+    "question": "ما اسم السياره؟",
+     "options": ["S500", "E300", "C200", "A200"],
+     "answer": "S500"
 
  
 }
@@ -125,6 +126,7 @@ if 'uid' in st.session_state:
             st.warning("لقد أجبت اليوم بالفعل! عد غدًا لفزورة جديدة.")
         else:
             st.write("### فزورة اليوم:")
+            st.image("Screenshot 2025-03-19 at 5.22.31 PM.png", width=400)
             st.write(RIDDLE["question"])
             chosen = st.radio("اختر الإجابة:", RIDDLE["options"], index=0)
 
