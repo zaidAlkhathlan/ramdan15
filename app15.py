@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=19, minute=0, second=3, microsecond=0)  
-    end_time = now.replace(hour=19, minute=5, second=5, microsecond=0)  
+    start_time = now.replace(hour=18, minute=21, second=3, microsecond=0)  
+    end_time = now.replace(hour=18, minute=25, second=5, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
@@ -49,9 +49,9 @@ db = firestore.client()
 # 🎯 Every day, update this section with a new riddle before uploading
 RIDDLE = {
 
-    "question": "أين توجد مدينة طروادة المشهورة في التاريخ؟",
-     "options": ["اليونان", "إيطاليا", "تركيا", "مصر"],
-     "answer": "تركيا"
+    "question": "ما هو اسم البرج الذي في الصورة؟",
+     "options": ["بنك الراجحي", "المملكة", "المجدول", "الفيصلية"],
+     "answer": "المجدول"
 
  
 }
@@ -126,6 +126,7 @@ if 'uid' in st.session_state:
             st.warning("لقد أجبت اليوم بالفعل! عد غدًا لفزورة جديدة.")
         else:
             st.write("### فزورة اليوم:")
+            st.image("WlWcVh7LKwlGJMaWYxS0KSdyMB32x4LoAeiesapG.webp", width=400)
             st.write(RIDDLE["question"])
             chosen = st.radio("اختر الإجابة:", RIDDLE["options"], index=0)
 
