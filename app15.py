@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=19, minute=0, second=3, microsecond=0)  
-    end_time = now.replace(hour=19, minute=5, second=5, microsecond=0)  
+    start_time = now.replace(hour=18, minute=6, second=3, microsecond=0)  
+    end_time = now.replace(hour=18, minute=10, second=5, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
@@ -49,9 +49,9 @@ db = firestore.client()
 # 🎯 Every day, update this section with a new riddle before uploading
 RIDDLE = {
 
-    "question": "ما هي الدولة التي تحتوي على أكبر عدد من البحيرات في العالم؟",
-     "options": ["روسيا", "كندا", "فنلندا", "الولايات المتحدة"],
-     "answer": "كندا"
+    "question": "ما المقصود بكلمة الفرصاد في اللغة العربية؟",
+     "options": ["التوت", "الكرز", "العنب", "التفاح"],
+     "answer": "التوت"
 
  
 }
