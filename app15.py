@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=18, minute=27, second=3, microsecond=0)  
-    end_time = now.replace(hour=18, minute=35, second=5, microsecond=0)  
+    start_time = now.replace(hour=19, minute=0, second=3, microsecond=0)  
+    end_time = now.replace(hour=19, minute=5, second=5, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
