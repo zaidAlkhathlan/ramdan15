@@ -30,8 +30,8 @@ st.markdown(rtl_css, unsafe_allow_html=True)
 def can_show_riddle():
     local_tz = pytz.timezone("Asia/Riyadh")
     now = datetime.datetime.now(local_tz)
-    start_time = now.replace(hour=19, minute=10, second=3, microsecond=0)  
-    end_time = now.replace(hour=19, minute=15, second=5, microsecond=0)  
+    start_time = now.replace(hour=20, minute=51, second=3, microsecond=0)  
+    end_time = now.replace(hour=20, minute=55, second=5, microsecond=0)  
     return start_time <= now <= end_time
 
 ##############################
@@ -50,12 +50,12 @@ db = firestore.client()
 RIDDLE = {
 
   
+  "question": "أي من هذه ليست عاصمة؟",
+     "options": ["برلين", "سيدني", "طوكيو", "مدريد"],
+     "answer": "سيدني"
 
  
 }
-  "question": "كم عدد الجيوب الأنفية لدى الإنسان؟",
-     "options": ["4", "6", "8", "10"],
-     "answer": "8"
 
 
 
