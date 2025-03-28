@@ -50,7 +50,7 @@ db = firestore.client()
 RIDDLE = {
 
   
-  "question": "أي من هذه ليست عاصمة؟",
+  "question": "أي من هذه المدن ليست عاصمة؟",
      "options": ["برلين", "سيدني", "طوكيو", "مدريد"],
      "answer": "سيدني"
 
